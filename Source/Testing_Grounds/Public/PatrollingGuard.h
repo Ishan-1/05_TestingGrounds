@@ -15,7 +15,5 @@ class TESTING_GROUNDS_API APatrollingGuard : public ATP_ThirdPersonCharacter
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditInstanceOnly , Category = "Patrol Route")
-		TArray<AActor*> Waypoints;
 	
 };

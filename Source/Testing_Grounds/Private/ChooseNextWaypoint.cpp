@@ -6,6 +6,13 @@ EBTNodeResult::Type UChooseNextWaypoint::ExecuteTask(UBehaviorTreeComponent & Ow
 {
 	auto BlackBoardComp = OwnerComp.GetBlackboardComponent();
 	auto IndexV=BlackBoardComp->GetValueAsInt(Index.SelectedKeyName);
-	UE_LOG(LogTemp,Warning,TEXT("Waypoint Index: %i"),IndexV)
+	auto ControlledPawn = OwnerComp.GetAIOwner()->GetPawn();
+	auto PatrolRoute = ControlledPawn->FindComponentByClass<UPatrolRoute>();
+	if (!ensure(PatrolRoute)) { return EBTNodeResult::Failed; }
+	auto PatrolPoints = PatrolRoute->GetPatrolPoints();
+	BlackBoardComp->SetValueAsObject(Waypoint.SelectedKeyName,PatrolPoints[IndexV]);
+	IndexV++;
+	IndexV = IndexV%PatrolPoints.Num();
+	BlackBoardComp->SetValueAsInt(Index.SelectedKeyName, IndexV);
 	return EBTNodeResult::Succeeded;
 }
