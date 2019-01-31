@@ -6,7 +6,6 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "AIController.h"
 #include "PatrolRoute.h"
-#include "PatrollingGuard.h"
 #include"BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BlackboardData.h"
 #include "ChooseNextWaypoint.generated.h"
